@@ -1,23 +1,632 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- SEO Schema Markup for Local Business and Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "목포용달이사 전문",
+      "serviceType": "이사 서비스",
+      "provider": {
+        "@type": "Organization",
+        "name": "목포 이사 전문 업체",
+        "url": "https://yourdomain.com",
+        "logo": "https://yourdomain.com/logo.png"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "목포시"
+      },
+      "description": "목포 전 지역(하당동, 옥암동, 남악 등)을 포함한 소형 및 일반 이사 전문 서비스입니다. 포장이사, 반포장이사, 1톤/2.5톤 용달이사 등 맞춤형 서비스를 제공합니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "목포 용달이사 서비스 가격",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "목포 1톤 용달이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "200000",
+              "priceCurrency": "KRW",
+              "description": "원룸 및 소량 짐 운반, 기본 운송비 기준"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "목포 2.5톤 용달이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "300000",
+              "priceCurrency": "KRW",
+              "description": "짐이 많은 원룸/1.5룸, 반포장 또는 일반이사 기준 운송비"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "목포 포장이사 (1~2인 가구)"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "500000",
+              "priceCurrency": "KRW",
+              "description": "포장, 운반, 정리 정돈까지 포함된 서비스"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        /* General Reset and Typography */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-color: #f8fbfd; /* Very light blue background */
+            color: #333;
+        }
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            text-align: center;
+            color: #1a4a8d;
+            padding-bottom: 1rem;
+            line-height: 1.3;
+        }
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid #e0eaf3;
+            padding-bottom: 0.5rem;
+            color: #1a4a8d;
+            margin-top: 3rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #3b6b9d;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0eaf3;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            font-weight: 500;
+            color: #555;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        nav a:hover {
+            color: #007bff;
+            background-color: #f0f4f8;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #007bff;
+        }
+        section p {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Keyword Tags */
+        .keyword-tags {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .keyword-tags a {
+            background-color: #e3f2fd;
+            color: #007bff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .keyword-tags a:hover {
+            background-color: #c9e6ff;
+        }
+
+        /* Table Styling */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .data-table th, .data-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .data-table th {
+            background-color: #f0f4f8;
+            color: #3b6b9d;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .highlight-price {
+            font-weight: 700;
+            color: #e65c52; /* Emphasis color */
+            font-size: 1.1rem;
+        }
+
+        /* FAQ Styling */
+        dl {
+            margin-top: 2rem;
+        }
+        dt {
+            background-color: #f8fbfd;
+            border-left: 4px solid #007bff;
+            padding: 1.2rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #1a4a8d;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+        dt:hover {
+            background-color: #eaf3ff;
+        }
+        dt::after {
+            content: '+';
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #007bff;
+            transition: transform 0.3s ease;
+        }
+        dt.active::after {
+            content: '-';
+            transform: translateY(-50%) rotate(180deg);
+        }
+        dd {
+            padding: 1.5rem;
+            margin-left: 0;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            display: none;
+            transition: height 0.3s ease;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        dd.active {
+            display: block;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            font-weight: 700;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form (Dwell time enhancement) */
+        .quote-form {
+            background-color: #f8fbfd;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e0eaf3;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #3b6b9d;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            color: #333;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-actions {
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+            background-color: #e9ecef;
+            margin-top: 3rem;
+        }
+        /* List style customization */
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        /* External Links section */
+        .external-links ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .external-links li a {
+            font-weight: 500;
+            color: #007bff;
+        }
+
+        /* Detailed Content Styling */
+        .content-block {
+            padding: 1rem 0;
+        }
+        .content-block h4 {
+            font-size: 1.2rem;
+            color: #007bff;
+            border-left: 3px solid #007bff;
+            padding-left: 10px;
+        }
+        .content-block p {
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>목포용달이사 짐량별 맞춤 견적, 2026년 이사철 비용 정보</h1>
+        <p>목포 지역 원룸, 1.5룸, 소형 사무실 이사를 위한 전문 용달 서비스</p>
+        <nav>
+            <ul>
+                <li><a href="#service_type">서비스 종류</a></li>
+                <li><a href="#price_info">비용 안내</a></li>
+                <li><a href="#local_info">목포 지역 정보</a></li>
+                <li><a href="#contact_form">무료 견적 요청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Section 1: Introduction and Service Definition -->
+        <section id="introduction">
+            <h2>목포용달이사, 짐이 적다고 아무데나 맡기시나요?</h2>
+            <p><strong>목포용달이사</strong>는 1톤 용달 트럭이나 2.5톤 트럭을 이용해 짐을 운반하는 서비스로, 주로 짐이 많지 않은 원룸, 1.5룸, 소형 주거 공간 이사에 적합합니다. 용달이사의 가장 큰 장점은 합리적인 비용이지만, 단순히 차량만 이용하는 일반 용달(운전만 지원)과 포장, 운반, 배치까지 해주는 용달이사(서비스 통합)는 큰 차이가 있습니다. 저희는 목포 지역에 특화된 전문가로, 고객님의 짐량과 예산에 맞춰 최적의 이사 방법을 제안합니다.</p>
+            <p>특히, <strong>목포원룸이사</strong>를 계획하는 고객님들께는 1톤 또는 2.5톤 용달이사가 가장 효율적인 선택지입니다. 일반 이사와 달리 짐이 적기 때문에 불필요하게 큰 트럭을 부를 필요가 없습니다. 저희는 소형 가구부터 가전제품까지 안전하게 운반하며, 고객님의 요구에 따라 포장 서비스의 범위를 조정해 비용을 절감할 수 있도록 돕습니다.</p>
+
+            <div class="keyword-tags" aria-label="관련 이사 키워드">
+                <a href="#price_info">목포용달이사비용</a>
+                <a href="#service_type">목포원룸이사</a>
+                <a href="#service_type">목포반포장이사</a>
+                <a href="#service_type">목포포장이사</a>
+                <a href="#local_info">목포시 이삿짐센터</a>
+                <a href="#local_info">남악신도시 이사</a>
+            </div>
+
+            <h3 class="mt-4">2026년 이사 트렌드: '가성비'와 '맞춤형' 서비스의 결합</h3>
+            <p>2026년에도 이사 시장은 계속 변화하고 있습니다. 최근에는 무조건 포장이사를 선호하던 트렌드에서 벗어나, 짐의 양에 따라 포장 범위를 조절하는 <strong>반포장이사</strong>와 <strong>용달이사</strong>의 수요가 급증하고 있습니다. 특히 짐 정리가 어느 정도 가능한 1인 가구, 2인 가구의 경우, 포장 비용을 절감하면서도 운반의 편리함을 누릴 수 있는 반포장이사를 선호합니다. 저희는 이러한 트렌드에 맞춰 목포 지역 고객님들께 최적의 맞춤형 서비스를 제공합니다.</p>
+        </section>
+
+        <!-- Section 2: Service Details and Customization -->
+        <section id="service_type">
+            <h2>목포용달이사 서비스 종류: 짐량에 따른 선택 기준</h2>
+            <p><strong>목포용달이사</strong>는 단순히 1톤 또는 2.5톤 트럭을 부르는 것을 넘어, 고객님의 이사 환경과 예산에 맞춘 다양한 서비스로 구성됩니다. 저희는 고객의 짐량에 따라 1톤 트럭과 2.5톤 트럭을 유동적으로 배치하며, 서비스 형태를 세분화하여 불필요한 비용을 줄이고 만족도를 높이는 것을 목표로 합니다.</p>
+
+            <!-- Detailed Service Descriptions (for content length) -->
+            <div class="content-block">
+                <h4>1. 목포 1톤 용달이사 (짐이 적은 원룸 이사)</h4>
+                <p><strong>대상:</strong> 짐이 적은 원룸 또는 오피스텔 이사. 가전/가구가 최소화된 1인 가구.</p>
+                <p><strong>특징:</strong> 1톤 트럭을 이용하며, 기본적으로 운송 및 상하차 작업만을 포함합니다. 고객님께서 모든 짐을 박스 포장하여 준비해야 합니다. 비용이 가장 저렴하며, 짐이 적고 이사 경험이 있는 분들에게 적합합니다.</p>
+                <p><strong>팁:</strong> 1톤 용달이사 시에도 냉장고, 세탁기 등 대형 가전 운반은 전문가의 도움이 필요합니다. 짐이 너무 많아 1톤 트럭에 실리지 않으면 추가 비용이 발생할 수 있으므로, 정확한 견적 상담이 필수입니다.</p>
+            </div>
+
+            <div class="content-block">
+                <h4>2. 목포 2.5톤 용달이사 (짐이 많은 원룸/1.5룸 이사)</h4>
+                <p><strong>대상:</strong> 짐이 많은 1인 가구, 1.5룸, 소형 빌라 또는 2인 가구 이사.</p>
+                <p><strong>특징:</strong> 2.5톤 트럭을 이용하며, 1톤 트럭으로 운반하기 어려운 짐이 많은 경우에 선택됩니다. 짐이 많아도 2.5톤 차량 한 대로 충분히 운반 가능하며, 포장 및 정리 서비스 유무에 따라 포장이사 또는 반포장이사로 진행됩니다.</p>
+                <p><strong>팁:</strong> 2.5톤 이사는 짐의 양이 1톤의 약 2배 정도 될 때 효과적입니다. 특히 가구(침대, 서랍장)나 가전(대형 TV, 김치냉장고)이 많을 경우 2.5톤을 선택하는 것이 안전합니다. 짐이 많아 5톤 차량이 필요한지 애매한 경우에도 2.5톤 차량 2대(혼합 이사)를 활용하여 비용을 절감할 수 있습니다.</p>
+            </div>
+
+            <div class="content-block">
+                <h4>3. 목포 반포장이사 (가성비와 편리함의 조화)</h4>
+                <p><strong>대상:</strong> 포장 이사의 편리함과 일반 이사의 합리적인 비용을 원하는 고객.</p>
+                <p><strong>특징:</strong> 큰 짐(가구, 가전)은 전문가가 포장하고 운반하며, 잔 짐(옷, 주방용품 등)은 고객이 직접 포장하고 정리하는 방식입니다. 포장 시간이 단축되어 비용이 절감되며, 고객의 참여도를 높여 이사 비용을 합리적으로 조절할 수 있습니다.</p>
+            </div>
+
+            <div class="content-block">
+                <h4>4. 목포 포장이사 (토탈 서비스)</h4>
+                <p><strong>대상:</strong> 이사에 신경 쓰고 싶지 않은 고객, 맞벌이 부부, 짐이 많은 1.5룸.</p>
+                <p><strong>특징:</strong> 포장, 운반, 도착지 정리 및 배치, 마무리 청소까지 모든 것을 전문가가 처리합니다. 고객은 이사 당일 이사 업체에 맡기고, 도착지에서 최종적으로 짐이 배치된 상태를 확인만 하면 됩니다.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Local Information and Specific Area Focus (SEO Optimization) -->
+        <section id="local_info">
+            <h2>목포 지역별 용달이사 서비스 특성 분석</h2>
+            <p><strong>목포용달이사</strong>는 지역 특성을 잘 이해하는 업체가 진행해야 효율적입니다. 목포시는 구시가지와 신도심이 공존하며, 아파트 단지부터 빌라, 주택가까지 다양한 주거 형태가 존재합니다. 각 지역별로 이사 시 고려해야 할 사항을 자세히 안내해 드립니다.</p>
+
+            <div class="content-block">
+                <h4>목포 하당동, 옥암동, 상동 지역 이사</h4>
+                <p>하당동과 옥암동은 목포의 신도심으로, 아파트와 빌라가 밀집해 있습니다. 특히 옥암동은 남악신도시와 인접해 있어 이사 수요가 꾸준하며, 엘리베이터 사용이나 사다리차 작업 시 관리사무소와의 협의가 중요합니다. 저희는 해당 지역 아파트 단지 이사 경험이 풍부하여 신속한 작업을 보장합니다.</p>
+            </div>
+
+            <div class="content-block">
+                <h4>목포 남악신도시 이사 (무안군 삼향읍)</h4>
+                <p>행정구역상 무안군 삼향읍에 속하지만 목포 생활권인 <strong>남악신도시</strong>는 목포 지역 이사 수요의 상당 부분을 차지합니다. 대형 아파트 단지 중심으로 이사가 이루어지며, 단지 내 규약이 까다로울 수 있습니다. 이사 전후로 발생할 수 있는 소음이나 주차 문제에 대해 철저하게 대비해야 하며, 저희는 남악신도시의 이사 환경에 대해 높은 이해도를 가지고 있습니다.</p>
+            </div>
+
+            <div class="content-block">
+                <h4>구도심 주택가 이사 (대성동, 산정동, 만호동 등)</h4>
+                <p>목포 구도심 지역의 주택가는 도로가 좁거나 주차 공간 확보가 어려운 경우가 많습니다. 특히 <strong>용달이사</strong>의 경우 차량 진입이 어려운 곳에서는 짐을 옮기는 거리가 길어져 추가 요금이 발생할 수 있습니다. 저희는 이러한 지형적 특성을 미리 파악하고, 최적의 작업 동선을 확보하여 추가 비용 발생을 최소화합니다.</p>
+            </div>
+
+            <div class="cta-container">
+                <a href="#contact_form" class="cta-button" aria-label="목포 지역 전문가와 이사 상담하기">목포 맞춤 이사 견적 문의</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Pricing Details and Factors (SEO optimization for cost queries) -->
+        <section id="price_info">
+            <h2>목포용달이사 비용 분석 및 2026년 가격 변동 예측</h2>
+            <p><strong>목포용달이사 비용</strong>은 "짐의 양(차량 크기)", "이사 형태(포장/반포장/일반)", "작업 조건(사다리차/엘리베이터 유무)", "이동 거리", "이사 날짜" 등 복합적인 요인에 의해 결정됩니다. 아래 표는 대략적인 비용을 나타내며, 정확한 견적은 현장 상담을 통해 받아보시는 것이 좋습니다.</p>
+
+            <!-- Price Table -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>서비스 종류</th>
+                        <th>짐량 기준</th>
+                        <th>평균 비용 (2026년 예측, VAT 별도)</th>
+                        <th>주요 특징 및 포함 서비스</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1톤 용달이사</td>
+                        <td>원룸/짐 적은 1인 가구</td>
+                        <td><span class="highlight-price">20만원 ~ 35만원</span></td>
+                        <td>운반 위주 (상하차 도움), 고객 직접 포장/정리</td>
+                    </tr>
+                    <tr>
+                        <td>2.5톤 용달이사 (일반)</td>
+                        <td>짐 많은 원룸/1.5룸/2인 가구</td>
+                        <td><span class="highlight-price">30만원 ~ 45만원</span></td>
+                        <td>운반 위주 (상하차 도움), 고객 직접 포장/정리</td>
+                    </tr>
+                    <tr>
+                        <td>반포장이사 (2.5톤 기준)</td>
+                        <td>짐 많은 원룸/1.5룸/2인 가구</td>
+                        <td><span class="highlight-price">45만원 ~ 65만원</span></td>
+                        <td>큰 짐 포장/운반/정리, 잔 짐 고객 담당</td>
+                    </tr>
+                    <tr>
+                        <td>포장이사 (2.5톤 기준)</td>
+                        <td>짐 많은 1.5룸/2인 가구</td>
+                        <td><span class="highlight-price">60만원 ~ 80만원</span></td>
+                        <td>포장부터 정리까지 모든 과정 전문가 진행</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="mt-4"><strong>* 비용 변동 요인:</strong> 이사 날짜가 <strong>손 없는 날</strong>이나 주말, 공휴일에 가까울수록 비용이 상승합니다. 2026년 이사철 (봄, 가을)에는 미리 예약하지 않으면 원하는 시간대에 서비스를 받기 어려울 수 있습니다. 사다리차 이용 비용(약 10만원 ~ 15만원)은 별도입니다.</p>
+
+            <h3>2026년 이사 준비 체크리스트 (자세한 정보 제공으로 Dwell Time 증대)</h3>
+            <div class="content-block">
+                <h4>1. 이사 날짜 확정 및 예약 (최소 2주 전)</h4>
+                <p><strong>주요 고려 사항:</strong> 이사 날짜가 손 없는 날(음력 9일, 10일, 19일, 20일, 29일, 30일)이거나 주말, 공휴일인 경우 비용이 평일 대비 10~20% 할증될 수 있습니다. 2026년 손 없는 날 일정을 미리 확인하고, 이사 희망일 최소 2주 전에는 예약을 확정하여 원하는 시간대에 서비스를 확보하세요.</p>
+            </div>
+            <div class="content-block">
+                <h4>2. 이사 전 불필요한 짐 정리</h4>
+                <p><strong>비용 절감 핵심:</strong> 이사 비용은 짐의 양에 비례하여 산정됩니다. 이사 전 미리 버릴 짐을 분류하고, 중고 물품을 처분하여 짐량을 줄이면 이사 비용을 크게 절감할 수 있습니다. 특히 헌옷, 오래된 가구, 사용하지 않는 가전제품은 미리 처리하는 것이 좋습니다.</p>
+            </div>
+            <div class="content-block">
+                <h4>3. 공과금 정산 및 주소 변경</h4>
+                <p><strong>필수 행정 처리:</strong> 전기, 도시가스, 수도 요금은 이사 당일 정산이 필요합니다. 특히 가스 정산은 도시가스 공급업체에 2~3일 전 미리 연락하여 예약해야 합니다. 우체국에서는 주거 이전 신고 서비스를 통해 최대 3개월 동안 새 주소로 우편물을 자동 전달해주는 서비스를 제공합니다.</p>
+            </div>
+
+        </section>
+
+        <!-- Section 5: Quotation Request Form (User Engagement) -->
+        <section id="contact_form">
+            <h2>목포용달이사 무료 방문 견적 요청 (Dwell Time 증대)</h2>
+            <p><strong>목포용달이사</strong>는 현장 상황에 따라 비용 차이가 발생합니다. 정확한 견적을 위해 아래 양식을 작성해 주시면 전문가가 1차 상담을 진행하고 필요 시 방문 견적을 제안해 드립니다. 견적 문의는 무료로 진행됩니다.</p>
+            <form class="quote-form">
+                <div class="form-group">
+                    <label for="name">성함</label>
+                    <input type="text" id="name" name="name" placeholder="고객님의 성함을 입력해주세요." required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처</label>
+                    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="movingDate">희망 이사 날짜</label>
+                    <input type="date" id="movingDate" name="movingDate" value="2026-03-01">
+                </div>
+                <div class="form-group">
+                    <label for="movingType">희망 이사 형태</label>
+                    <select id="movingType" name="movingType" required>
+                        <option value="">이사 형태를 선택해주세요.</option>
+                        <option value="1ton_general">1톤 용달이사 (일반/운송)</option>
+                        <option value="25ton_general">2.5톤 용달이사 (일반/운송)</option>
+                        <option value="semi_packing">반포장이사</option>
+                        <option value="full_packing">포장이사</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="startAddress">출발지 주소 (목포시/남악신도시)</label>
+                    <input type="text" id="startAddress" name="startAddress" placeholder="예: 목포시 하당동 OOO아파트 OOO호" required>
+                </div>
+                <div class="form-group">
+                    <label for="endAddress">도착지 주소 (목포시/남악신도시)</label>
+                    <input type="text" id="endAddress" name="endAddress" placeholder="예: 목포시 옥암동 OOO빌라 OOO호" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription">주요 짐 목록 (대형 가구/가전)</label>
+                    <textarea id="itemDescription" name="itemDescription" rows="4" placeholder="침대, 냉장고, 세탁기 등 대형 짐을 기재해주세요. 짐이 많을 경우 2.5톤으로 견적됩니다."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="additionalRequests">특이사항 및 요청사항</label>
+                    <textarea id="additionalRequests" name="additionalRequests" rows="3" placeholder="엘리베이터 유무, 사다리차 필요 여부, 출발/도착지 층수 등"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="cta-button">무료 견적 요청하기</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 6: FAQ (for Naver Snippet and trust building) -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p><strong>네이버 지식iN</strong>에서 <strong>'목포용달이사'</strong>를 검색하신 많은 분들이 궁금해하시는 질문들을 모았습니다.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false" class="accordion-header">Q. 1톤 용달 이사로 충분할까요? 2.5톤으로 바꿔야 하나요?</dt>
+                <dd class="accordion-content">A. 1톤 용달 이사는 주로 짐이 매우 적은 1인 가구에 적합합니다. 짐의 기준은 일반적인 원룸 크기의 침대(매트리스), 소형 냉장고(미니냉장고), 소형 세탁기, 옷가방 3~4개, 박스 5개 정도입니다. 만약 짐의 양이 이보다 많거나, 책상, 서랍장, 대형 TV 등 부피가 큰 짐이 추가된다면 2.5톤 용달 이사를 선택하는 것이 좋습니다. 짐을 억지로 1톤 차량에 실으려다 파손될 위험이 있으며, 짐이 초과되어 현장에서 차량을 추가할 경우 비용이 더 비싸질 수 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false" class="accordion-header">Q. 이사 중 짐 파손/분실 시 보상은 어떻게 이루어지나요?</dt>
+                <dd class="accordion-content">A. 모든 정식 이사업체는 <a href="https://www.ftc.go.kr/www/cpw/service/selectBusi.do?key=670&busiType=08" target="_blank">화물자동차 운수사업법</a>에 의거하여 적재물배상책임보험에 가입되어 있습니다. 이사 중 발생하는 고의 또는 과실로 인한 짐 파손 및 분실에 대해서는 보험 약관에 따라 보상 처리가 진행됩니다. 다만, 고객님께서 직접 포장하신 짐(일반이사)의 경우, 포장 불량으로 인한 파손에 대해서는 보상이 어려울 수 있습니다. 반포장이상나 포장이사를 선택하시면 더욱 안전한 이사가 가능합니다.</dd>
+                <dt tabindex="0" aria-expanded="false" class="accordion-header">Q. 목포 지역에서 이사하기 좋은 날짜(손 없는 날)는 언제인가요? 2026년 정보.</dt>
+                <dd class="accordion-content">A. <strong>손 없는 날</strong>은 악귀가 없는 날로 이사하기 좋은 길일로 여겨집니다. 2026년 손 없는 날은 3월(9, 10, 19, 20일), 4월(8, 9, 18, 19, 28, 29일), 5월(8, 9, 18, 19, 28, 29일) 등입니다. 손 없는 날은 이사 수요가 집중되어 비용이 상승하고 예약이 어렵습니다. 합리적인 이사 비용을 원하시면 평일이나 손 없는 날을 피해 이사하는 것을 권장합니다.</dd>
+                <dt tabindex="0" aria-expanded="false" class="accordion-header">Q. 목포에서 남악신도시로 이사할 때 특별히 주의할 점이 있나요?</dt>
+                <dd class="accordion-content">A. 남악신도시는 대부분 신축 아파트 단지로 이루어져 있어, 이사 시 아파트 관리사무소에 엘리베이터 사용 예약(이사 시간 지정)을 미리 해야 합니다. 특히, 주말 이사의 경우 엘리베이터 사용 규제가 더욱 엄격할 수 있으므로, 최소 1주일 전 관리사무소에 연락하여 이사 일정을 협의해야 합니다. 또한, 아파트 단지 내에서 사다리차 사용이 제한되는 곳도 있으니 사전에 확인이 필요합니다.</dd>
+                <dt tabindex="0" aria-expanded="false" class="accordion-header">Q. 2.5톤 이사 시 사다리차 비용이 필수로 발생하나요?</dt>
+                <dd class="accordion-content">A. 짐이 많아 엘리베이터로 운반이 어렵거나 고층(6층 이상)으로 이사할 경우 사다리차가 필요합니다. 사다리차 비용은 별도로 발생하며, 층수와 작업 환경에 따라 달라집니다. 3~5층 정도의 저층 빌라이사에서는 짐량과 작업 난이도에 따라 수작업이 가능하여 비용을 절감할 수도 있습니다. 상담 시 사다리차 사용 여부를 미리 문의해 주세요.</dd>
+            </dl>
+        </section>
+
+        <!-- Section 7: External Links (E-A-T enhancement) -->
+        <section class="external-links">
+            <h2>신뢰성 있는 이사 정보 및 관련 자료</h2>
+            <p><strong>안전하고 현명한 이사</strong>를 위해 공신력 있는 기관의 정보를 참고하시어 피해를 예방하고 이사 계획을 세우세요. 저희는 투명한 서비스 제공을 약속드립니다.</p>
+            <ul>
+                <li><a href="https://www.ftc.go.kr/www/cpw/service/selectBusi.do?key=670&busiType=08" target="_blank">이사화물운송 표준약관 (공정거래위원회)</a> - 이사 서비스 계약 전 확인해야 할 필수 약관입니다.</li>
+                <li><a href="https://namu.wiki/w/%ED%8F%AC%EC%9E%A5%EC%9D%B4%EC%82%AC" target="_blank">포장이사 관련 나무위키 정보</a> - 포장이사의 개념과 장단점 등 일반적인 정보를 확인할 수 있습니다.</li>
+                <li><a href="https://www.molit.go.kr/" target="_blank">국토교통부 (MOLIT)</a> - 이사화물 운수사업 관련 법규 및 정책 정보를 확인할 수 있습니다.</li>
+                <li><a href="https://www.mc.go.kr/" target="_blank">목포시청 홈페이지</a> - 목포시의 행정 정보 및 지역 소식을 확인하여 이사 계획에 참고할 수 있습니다.</li>
+                <li><a href="https://www.consumer.go.kr/" target="_blank">소비자 24 (공정거래위원회 소비자 포털)</a> - 이사 서비스 관련 소비자 피해 사례 및 분쟁 해결 기준을 찾아볼 수 있습니다.</li>
+            </ul>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <footer>
+        <p>&copy; 2025 목포용달이사 전문 업체. 모든 권리 보유. | 사업자 등록번호: 000-00-00000</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('.accordion-header').forEach((header) => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = content.classList.contains('active');
+
+                // Close all other active elements
+                document.querySelectorAll('.accordion-content.active').forEach(item => {
+                    item.classList.remove('active');
+                    item.previousElementSibling.classList.remove('active');
+                    item.previousElementSibling.setAttribute('aria-expanded', 'false');
+                });
+
+                // Open the selected element if it wasn't active
+                if (!isActive) {
+                    content.classList.add('active');
+                    header.classList.add('active');
+                    header.setAttribute('aria-expanded', 'true');
+                }
+            });
+            header.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    header.click();
+                }
+            });
+        });
+    </script>
+
+
+  
